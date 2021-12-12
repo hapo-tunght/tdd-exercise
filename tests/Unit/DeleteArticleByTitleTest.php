@@ -18,8 +18,12 @@ class DeleteArticleByTitleTest extends TestCase
     {
         $article = Article::where('title', 'Thanh Tung Hoang')->first();
 
-        $this->delete(route('articles.destroy', $article))
-            ->assertStatus(200, 'Article has been deleted')
-            ->assertJson($article);
+        if (empty($article)) {
+            $this->assertStatus(404, 'NOT FOUND');
+        } else {
+            $this->delete(route('articles.destroy', $article))
+                ->assertStatus(200, 'Article has been deleted')
+                ->assertJson($article);
+        }
     }
 }
