@@ -35,8 +35,15 @@ class CreateArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required'],
+            'title' => ['required', 'max:200'],
             'content' => ['required']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.max' => 'Title is too long. Maximum length is 200 characters'
         ];
     }
 }
