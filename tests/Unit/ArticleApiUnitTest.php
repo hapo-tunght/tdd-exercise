@@ -20,6 +20,7 @@ class ArticleApiUnitTest extends TestCase
         ];
 
         $this->post(route('articles.store'), $data)
+            ->dump()
             ->assertStatus(201)
             ->assertJson($data);
     }
